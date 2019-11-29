@@ -9,14 +9,19 @@ let lines = [],
     allPackages = [],
     packageNamesArray = [],
     packageObj = {},
-    eachPackage;
+    eachPackage, 
+    fileName = './status.real';
 
-//Read file line by line
+//Reads file line by line
+
+let createFileReadingInterface = (fileName)=>{
     const rl = readline.createInterface({
-        input: fs.createReadStream('./status.real'),
+        input: fs.createReadStream(fileName),
         crlfDelay: Infinity  
     });
+}
 
+createFileReadingInterface();
 //Returned lines
     
     rl.on('line', (line) => {
