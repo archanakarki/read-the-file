@@ -1,10 +1,51 @@
 //Built-in and third party modules used in app
 const express = require('express')
 const app = express()
-
+const os = require('os')
+const fs = require('fs')
+const readline = require('readline');
 //App configurations
 app.set('view engine', 'ejs')
-const typeOfOS = os.type();
+
+//Read file line by line
+let lines = [], 
+    keyValue, 
+    newLine={},
+    allPackages = {},
+    packageNamesArray = [],
+    packageObj = {},
+    eachPackage;
+//Reads file line by line
+    const rl = readline.createInterface({
+        input: fs.createReadStream('./status.real'),
+        crlfDelay: Infinity  
+    });
+
+//Returned lines   
+    rl.on('line', (line) => {
+        indexOfColonForKeys = line.indexOf(':');
+        //For displaying content in key : value form
+        if(line.length === 0){
+            newLine = {
+            key : "",
+            value : "",
+            };
+            newLine.str = "";
+        } else if((line.length > 0) && (line.indexOf(':')<0)){
+            newLine = {
+                key : "",
+                value : line
+            }
+            newLine.str = newLine.value;
+        }else{
+                    newLine = {
+                        key :  line.slice(0, indexOfColonForKeys),
+                        value : line.slice(indexOfColonForKeys+1, line.length)                
+                    };
+                    newLine.str = newLine.key + ":" + newLine.value
+        }
+            lines.push(newLine);
+    });  
 
 
 //Routes
@@ -24,12 +65,12 @@ app.get('/', (req, res)=>{
         });
 });
 
-// let packagePara = [], finalPackage, finalValue, indexInsideOnePackageArr= [], finalValueStr = "", onePackageInString, package, oneLine, onePLength, index, onePackage, allPackages = [], currentPackageIndex, nextPackageIndex, splitData, newEachPackage = {}, mapSplitData, packageIndexNo = [], lengthOfPackageWord;
-let data, splitData, packageIndexNo = [], onePackageInString,
+// let packagePara = [], finalPackage, finalValue, indexInsideOnePackageArr= [], finalValueStr = "", onePackageInString, package, oneLine, onePLength, index, onePackage, allPackages = [], currentPackageIndex, nextPackageIndex, splitData, newEachPackage = {}, mapSplitData, packageIndex = [], lengthOfPackageWord;
+let data, splitData, packageIndex = [], onePackageInString,
 	finalPackage = {
+        name : undefined,
         position : undefined,
         indexes : undefined,
-        packageName : undefined,
         details : {}
     }, currentPackageIndex, nextPackageIndex, indexInsideOnePackageArr = [], finalPackKeys = [], finalPackValues = [], slicedArr = [], valuesStrArr = [];
 
@@ -39,17 +80,44 @@ app.get('/packages', (req, res)=>{
     data = fs.readFileSync('./status.real', 'utf-8') 
     splitData = data.split(/[\s\n\r]/g)
     //Create array of package in splitted data arr
+    let keys = [], values = [], pkgName; 
     splitData.forEach((e, i, thisArr)=>{
-        if((e === "Package"  || e === "Package:") && (thisArr[i+2] === "Status:")){
-        packageIndexNo.push(i);
+        //If any word includes : then 
+            //Try matching if it is Package:
+                //If not matched then 
+        if(e.includes(':')){
+            //Seacrh for the word Package:
+            if(e.match(/Package:/g)){    
+                e = e.replace(':', '').trimEnd()
+                packageIndex.push(i);
+                pkgName = thisArr[i+1];
+                allPackages[pkgName] = {
+                    name : pkgName,
+                    startsAt : i,
+                    keysAt : [],
+                    valueAt : [],
+                    info : {}
+                }
+            } else if(!(e.includes('http') && (e.includes('git')) && (e.match(/^([^0-9]*)/g)))){
+                keys.push(i)
+            }
+        } else{
+            values.push(i);
         }
+
     })
+
+    // packageIndex.forEach((el, i)=>{
+    //     console.log(el)
+    // })
+
+    // console.log(Object.keys(allPackages).length)
     
-    //Start package Obj from packageIndexNo arr, 
+    //Start package Obj from packageIndex arr, 
     //create arr from package to package
-    for(let i = 0; i < packageIndexNo.length; i++){
-    currentPackageIndex = packageIndexNo[i]
-    nextPackageIndex = packageIndexNo[i+1]
+    for(let i = 0; i < packageIndex.length; i++){
+    currentPackageIndex = packageIndex[i]
+    nextPackageIndex = packageIndex[i+1]
     finalPackage.position = currentPackageIndex;
     finalPackage.packageName = splitData[currentPackageIndex+1]
     onePackageInString = splitData.slice(currentPackageIndex, nextPackageIndex)
@@ -87,9 +155,7 @@ app.get('/packages', (req, res)=>{
     }
 
     finalPackKeys.forEach((key, i) => finalPackage.details[key] = valuesStrArr[i])  
-    console.log(finalPackage)
     res.render('packages', {data:data, finalPackage : finalPackage})   
-
 })
 
 
