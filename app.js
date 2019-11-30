@@ -85,31 +85,36 @@ app.get('/packages', (req, res)=>{
         //If any word includes : then 
             //Try matching if it is Package:
                 //If not matched then 
-        if(e.includes(':')){
             //Seacrh for the word Package:
-            if(e.match(/Package:/g)){    
-                e = e.replace(':', '').trimEnd()
-                packageIndex.push(i);
-                pkgName = thisArr[i+1];
-                allPackages[pkgName] = {
-                    name : pkgName,
-                    startsAt : i,
-                    keysAt : [],
-                    valueAt : [],
-                    info : {}
-                }
-            } else if(!(e.includes('http') && (e.includes('git')) && (e.match(/^([^0-9]*)/g)))){
-                keys.push(i)
-            }
-        } else{
-            values.push(i);
-        }
+            
+            if(e.match(/[A-Z]/g) && e.match(/[:]/g)){
 
+                if(e.match(/Package:/g)){    
+                    e = e.replace(':', '').trimEnd()
+                    packageIndex.push(i);
+                    pkgName = thisArr[i+1];
+                    allPackages[pkgName] = {
+                        name : pkgName,
+                        startsAt : i,
+                        keys : [e],
+                        values: [],
+                        strArr: [],
+                        allInfo : {}
+                    }
+                } else if(!(e.match(/http/g) || e.match(/git/g) || e.match(/::/g) || e.match(/[0-9]/g))){
+                    //In case the index number is needed change keys : [e] to keys : [i] in allPackages defination
+                    //and here => allPackages[pkgName].keys.push(e)
+                    allPackages[pkgName].keys.push(e)
+                }    
+            } else{
+                allPackages[pkgName].values.push(i)
+            }
     })
 
-    // packageIndex.forEach((el, i)=>{
-    //     console.log(el)
-    // })
+    //To get all the package Names
+//    for(let p in allPackages){
+//     console.log(p)
+//    }
 
     // console.log(Object.keys(allPackages).length)
     
