@@ -82,10 +82,6 @@ app.get('/packages', (req, res)=>{
     //Create array of package in splitted data arr
     let keys = [], values = [], pkgName; 
     splitData.forEach((e, i, thisArr)=>{
-        //If any word includes : then 
-            //Try matching if it is Package:
-                //If not matched then 
-            //Seacrh for the word Package:
             
             if(e.match(/[A-Z]/g) && e.match(/[:]/g)){
 
@@ -96,72 +92,60 @@ app.get('/packages', (req, res)=>{
                     allPackages[pkgName] = {
                         name : pkgName,
                         startsAt : i,
-                        keys : [e],
+                        keys : [[i]],
                         values: [],
-                        strArr: [],
-                        allInfo : {}
+                        allInfo : {
+                            // [e] : i
+                        }
                     }
                 } else if(!(e.match(/http/g) || e.match(/git/g) || e.match(/::/g) || e.match(/[0-9]/g))){
-                    //In case the index number is needed change keys : [e] to keys : [i] in allPackages defination
-                    //and here => allPackages[pkgName].keys.push(e)
-                    allPackages[pkgName].keys.push(e)
+                    allPackages[pkgName].keys.push([i])
                 }    
-            } else{
-                allPackages[pkgName].values.push(i)
+            } 
+            else{
+                allPackages[pkgName].values.push([i])
             }
     })
+   
+    Object.values(allPackages).forEach((onePack, i, thisArr)=>{
+    //Received Onepack is an array of name, details{}
+        let packname = onePack.name
+        let packStartsAt = onePack.startsAt
+        let keyIndex = onePack.keys
+        let valueIndex = onePack.values
+        let currentKeyIndex;
+        let nextKeyIndex;
+        let valArr = []
+        valStrArr = [];
+        let keyIndexLength = keyIndex.length
+        let valueIndexLength = valueIndex.length
+        let info = {}
 
-    //To get all the package Names
-//    for(let p in allPackages){
-//     console.log(p)
-//    }
-
-    // console.log(Object.keys(allPackages).length)
-    
-    //Start package Obj from packageIndex arr, 
-    //create arr from package to package
-    for(let i = 0; i < packageIndex.length; i++){
-    currentPackageIndex = packageIndex[i]
-    nextPackageIndex = packageIndex[i+1]
-    finalPackage.position = currentPackageIndex;
-    finalPackage.packageName = splitData[currentPackageIndex+1]
-    onePackageInString = splitData.slice(currentPackageIndex, nextPackageIndex)
-    } 
-    
-    //Edit inside onePackage Arr
-    for(let i = 0; i < onePackageInString.length; i++){
-        if((onePackageInString[i].endsWith(':') || onePackageInString[i].endsWith(': '))&& !	(onePackageInString[i].includes('http:'))){
-            indexInsideOnePackageArr.push(onePackageInString[i].trimEnd(), i);
+        for(let i = 0; i < keyIndexLength; i++){
+           
+            if(i < keyIndexLength-1){
+                currentKeyIndex = Number(keyIndex[i])
+                nextKeyIndex = Number(keyIndex[i+1])
+             } else if(i == keyIndexLength){
+                 nextKeyIndex = valueIndex[valueIndexLength]
+             }
+            valArr.push(splitData.slice(currentKeyIndex+1 , nextKeyIndex))
         }
-     }
 
-    finalPackage.indexes = indexInsideOnePackageArr
-
-    //Lets find value
-    for(let i = 0; i<indexInsideOnePackageArr.length; i+=2){
-        if(indexInsideOnePackageArr[i].endsWith(':') || indexInsideOnePackageArr[i].endsWith(': ')){
-            finalPackKeys.push(indexInsideOnePackageArr[i].replace(':', ''))
-        }
-        finalPackValues.push(indexInsideOnePackageArr[i+1])
-    } 
-    
-    for(let i = 0; i <finalPackValues.length; i++){
-        // slicedArr.push(onePackageInString.slice(finalPackValues[i]+1, finalPackValues[i+1]))
-        slicedArr.push(onePackageInString.slice(finalPackValues[i]+1, finalPackValues[i+1]))
-
-    }
-
-    for(let i = 0; i < slicedArr.length; i++){
-        let str = "";
-        for(let j = 0; j < slicedArr[i].length; j++){
-        str = str + slicedArr[i][j] + " "
-        }
-        valuesStrArr[i] = str
-    }
-
-    finalPackKeys.forEach((key, i) => finalPackage.details[key] = valuesStrArr[i])  
+        valArr.forEach((val, i, arr)=>{
+            let str = ""
+            val.forEach((v)=>{
+                return str = str + v + " "
+            })
+            valStrArr.push(str)
+        })
+         keyIndex.forEach((key, i) => info[splitData[key]] = valStrArr[i]);
+         allPackages[packname].allInfo = info
+    })
+    console.log(allPackages)
     res.render('packages', {data:data, finalPackage : finalPackage})   
 })
+
 
 
 app.get('/:id', (req, res)=>{
