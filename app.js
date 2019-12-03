@@ -6,78 +6,52 @@ const fs = require('fs')
 const readline = require('readline');
 //App configurations
 app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/public'));
 
-//Read file line by line
-let lines = [], 
-    keyValue, 
-    newLine={},
-    allPackages = {},
-    packageNamesArray = [],
-    packageObj = {},
-    eachPackage;
-//Reads file line by line
-    const rl = readline.createInterface({
-        input: fs.createReadStream('./status.real'),
-        crlfDelay: Infinity  
-    });
+// //Read file line by line
+// let lines = [], 
+//     keyValue, 
+//     newLine={},
+//     allPackages = {},
+//     packageNamesArray = [],
+//     packageObj = {},
+//     eachPackage;
+// //Reads file line by line
+//     const rl = readline.createInterface({
+//         input: fs.createReadStream('./status.real'),
+//         crlfDelay: Infinity  
+//     });
 
-//Returned lines   
-    rl.on('line', (line) => {
-        indexOfColonForKeys = line.indexOf(':');
-        //For displaying content in key : value form
-        if(line.length === 0){
-            newLine = {
-            key : "",
-            value : "",
-            };
-            newLine.str = "";
-        } else if((line.length > 0) && (line.indexOf(':')<0)){
-            newLine = {
-                key : "",
-                value : line
-            }
-            newLine.str = newLine.value;
-        }else{
-                    newLine = {
-                        key :  line.slice(0, indexOfColonForKeys),
-                        value : line.slice(indexOfColonForKeys+1, line.length)                
-                    };
-                    newLine.str = newLine.key + ":" + newLine.value
-        }
-            lines.push(newLine);
-    });  
+// //Returned lines   
+//     rl.on('line', (line) => {
+//         indexOfColonForKeys = line.indexOf(':');
+//         //For displaying content in key : value form
+//         if(line.length === 0){
+//             newLine = {
+//             key : "",
+//             value : "",
+//             };
+//             newLine.str = "";
+//         } else if((line.length > 0) && (line.indexOf(':')<0)){
+//             newLine = {
+//                 key : "",
+//                 value : line
+//             }
+//             newLine.str = newLine.value;
+//         }else{
+//                     newLine = {
+//                         key :  line.slice(0, indexOfColonForKeys),
+//                         value : line.slice(indexOfColonForKeys+1, line.length)                
+//                     };
+//                     newLine.str = newLine.key + ":" + newLine.value
+//         }
+//             lines.push(newLine);
+//     });  
 
+/* Package Description */
 
-//Routes
-app.get('/', (req, res)=>{
-    //Finding sorted package name
-    lines.forEach((line)=>{
-        if(line['key'].match(/Package/g)){
-            let packageName = line.value
-            packageNamesArray.push(packageName)
-        }
-    })
-    packageNamesArray = packageNamesArray.sort()
-    //Read File
-    fs.readFile('./status.real', 'utf-8', (err, data)=>{
-        if(err) throw err;
-        res.render('index', {data : data, lines : lines, packageNamesArray : packageNamesArray})
-        });
-});
-
-// let packagePara = [], finalPackage, finalValue, indexInsideOnePackageArr= [], finalValueStr = "", onePackageInString, package, oneLine, onePLength, index, onePackage, allPackages = [], currentPackageIndex, nextPackageIndex, splitData, newEachPackage = {}, mapSplitData, packageIndex = [], lengthOfPackageWord;
-let data, splitData, packageIndex = [], onePackageInString,
-	finalPackage = {
-        name : undefined,
-        position : undefined,
-        indexes : undefined,
-        details : {}
-    }, currentPackageIndex, nextPackageIndex, indexInsideOnePackageArr = [], finalPackKeys = [], finalPackValues = [], slicedArr = [], valuesStrArr = [];
-
-
-app.get('/packages', (req, res)=>{
-
-    data = fs.readFileSync('./status.real', 'utf-8') 
+let data, splitData, packageIndex = [], allPackages = {}, packageNames = [];
+data = fs.readFileSync('./status.real', 'utf-8') 
     splitData = data.split(/[\s\n\r]/g)
     //Create array of package in splitted data arr
     let keys = [], values = [], pkgName; 
@@ -110,6 +84,7 @@ app.get('/packages', (req, res)=>{
     Object.values(allPackages).forEach((onePack, i, thisArr)=>{
     //Received Onepack is an array of name, details{}
         let packname = onePack.name
+        packageNames.push(packname)
         let packStartsAt = onePack.startsAt
         let keyIndex = onePack.keys
         let valueIndex = onePack.values
@@ -142,15 +117,34 @@ app.get('/packages', (req, res)=>{
          keyIndex.forEach((key, i) => info[splitData[key]] = valStrArr[i]);
          allPackages[packname].allInfo = info
     })
-    console.log(allPackages)
-    res.render('packages', {data:data, finalPackage : finalPackage})   
-})
 
 
+/* Routes */ 
 
+/* Index page */
+app.get('/', (req, res)=>{
+    res.render('index', {packageNames : packageNames.sort()})
+});
+
+/* Show package page */
 app.get('/:id', (req, res)=>{
     const packageUrl = req.params.id;
-    res.render('show', {packageUrl : packageUrl, lines:lines, packageNamesArray : packageNamesArray})
+
+    let packInfo = {}, keys = [], values = []
+    
+    Object.values(allPackages).forEach((pack)=>{
+        if(pack.name === packageUrl){
+            packInfo = pack.allInfo
+        }
+        return packInfo
+    })
+
+    for (let key in packInfo) {
+       keys.push(key)
+       values.push(packInfo[key])
+      }
+    
+    res.render('show', {packageUrl : packageUrl, keys : keys, values: values, packageNames : packageNames})
 })
 
 

@@ -1,9 +1,14 @@
-<h1>Names of all packages</h1>
+<%- include('partials/header'); -%>
 
-<a href="/packages">All Packages seperately</a>
-    <ol>
-        <%packageNamesArray.forEach((packageName)=>{%>
-            <%packageName = packageName.trim()%>
+<nav>
+    <h1>Names of all packages</h1>
+</nav>
+
+
+<!--<a href="/packages">All Packages seperately</a>-->
+     
+        <%packageNames.forEach((packageName)=>{%>
             <li><a href="/<%=packageName%>"><%=packageName%></a></li>
         <%})%>
-    </ol>
+ 
+<%- include('partials/footer'); -%>

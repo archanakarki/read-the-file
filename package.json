@@ -1,10 +1,11 @@
 {
   "name": "pre-assignment",
   "version": "1.0.0",
-  "description": "### Task is to:",
+  "description": "A program to extract and display the key information from the file",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
     "chalk": "^3.0.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

@@ -1,0 +1,55 @@
+html{
+    margin : 0;
+    padding : 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Barlow', sans-serif;}
+
+    body{
+    background-attachment: fixed;
+    }
+
+nav{
+    max-width : 100%;
+    padding : 10% auto;
+    font-family: 'Sulphur Point', sans-serif;
+}
+
+h1{
+    width : 50%;
+    margin : 10% auto;
+    margin-bottom: 5%;
+    text-align: center;
+    font-size: 3em;
+    color:  #333333;
+
+}
+
+li{
+    text-align: center;
+    list-style-type: none;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+li a{
+    text-decoration: none;
+}
+
+li a:link, a:visited, a:hover{
+    color : #4d4d4d
+}
+
+#tableDiv{
+    width : 100%;
+    height : auto;
+}
+
+table{
+    width : 50%;
+    margin : 1% auto;
+}
+
+#tableDiv{
+    font-size : 0.85em;
+    color : #4d4d4d
+}
