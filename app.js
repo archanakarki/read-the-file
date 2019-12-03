@@ -4,6 +4,7 @@ const app = express()
 const os = require('os')
 const fs = require('fs')
 const readline = require('readline');
+const PORT = 3000 || process.env.PORT
 //App configurations
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
@@ -149,6 +150,6 @@ app.get('/:id', (req, res)=>{
 
 
 //Ports for app
-app.listen(3000, ()=>{
-    console.log("Server is listening to port 3000")
+app.listen(PORT, ()=>{
+    console.log("Server is listening to port " + PORT)
 })
