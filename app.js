@@ -80,12 +80,27 @@ data = fs.readFileSync('./status.real', 'utf-8')
     })
 
 
+
+/** Operating system */
+let typeOfOs = os.type()
+
 /* Routes */ 
 
 /* Index page */
 app.get('/', (req, res)=>{
-    res.render('index', {packageNames : packageNames.sort()})
+    if(typeOfOs === "Darwin"){
+        typeOfOs = "Darwin(MacOs)"
+        res.render('welcome_darWin', {typeOfOs : typeOfOs})
+    } else if(typeOfOs === "Linux" || typeOfOs === "Windows_NT"){
+        res.render('welcome_linux', {typeOfOs: typeOfOs})
+    }
 });
+
+
+app.get('/index', (req, res)=>{
+    res.render('index', {packageNames : packageNames.sort(), typeOfOs : typeOfOs})
+})
+
 
 /* Show package page */
 app.get('/:id', (req, res)=>{
