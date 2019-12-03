@@ -2,10 +2,12 @@ html{
     margin : 0;
     padding : 0;
     font-family: 'Open Sans Condensed', sans-serif;
-    font-family: 'Barlow', sans-serif;}
+    font-family: 'Barlow', sans-serif;
+}
 
     body{
     background-attachment: fixed;
+    padding : 5%
     }
 
 nav{
@@ -16,19 +18,26 @@ nav{
 
 h1{
     width : 50%;
-    margin : 10% auto;
-    margin-bottom: 5%;
+    margin : 7% auto;
+    margin-bottom: 3%;
     text-align: center;
     font-size: 3em;
     color:  #333333;
 
 }
 
+p {
+    text-align: center;
+    color : #a3a3a3;
+    font-style: bold;
+    font-size: 1.5rem;
+}
+
 li{
     text-align: center;
     list-style-type: none;
-    font-size: 0.85em;
-    line-height: 1.5;
+    font-size: 1.15rem;
+    line-height: 1.7;
 }
 
 li a{
@@ -36,7 +45,7 @@ li a{
 }
 
 li a:link, a:visited, a:hover{
-    color : #4d4d4d
+    color : #555555;
 }
 
 #tableDiv{
@@ -47,6 +56,24 @@ li a:link, a:visited, a:hover{
 table{
     width : 50%;
     margin : 1% auto;
+    font-size: 1.1em;
+}
+
+td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+#showh1{
+    text-transform: capitalize;
+    width : 100%;
+    margin : 0% auto;
+    margin-bottom: 3%;
+    text-align: center;
+    font-size: 4em;
+    color:  #4d4d4d;
+
 }
 
 #tableDiv{
