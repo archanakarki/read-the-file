@@ -4,7 +4,7 @@ const app = express()
 const os = require('os')
 const fs = require('fs')
 const readline = require('readline');
-const PORT = 3000 || process.env.PORT
+const PORT = process.env.PORT
 //App configurations
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
