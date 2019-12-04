@@ -8,6 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Barlow|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/function.js"></script>
-    <title>Pre-assignment for junior developer</title>
+    <title>Document</title>
 </head>
 <body>
+<h1 id="showh1">status.real</h1>
+
+<div id="tableDiv">
+        <table>
+                
+            </table>
+</div>
+
+
+</body>
+</html>

@@ -52,11 +52,10 @@ data = fs.readFileSync('./status.real', 'utf-8')
         let currentKeyIndex;
         let nextKeyIndex;
         let valArr = []
-        valStrArr = [];
+            valStrArr = [];
         let keyIndexLength = keyIndex.length
         let valueIndexLength = valueIndex.length
         let info = {}
-
         for(let i = 0; i < keyIndexLength; i++){
            
             if(i < keyIndexLength-1){
@@ -82,32 +81,64 @@ data = fs.readFileSync('./status.real', 'utf-8')
 
 
 /** Operating system */
-let typeOfOs = os.type()
 
 /* Routes */ 
 
+//Read file line by line
+let lines = [], newLine={};
+//Reads file line by line
+let rl = readline.createInterface({
+    input: fs.createReadStream('./status.real'),
+    crlfDelay: Infinity  
+});
+
+//Returned lines   
+rl.on('line', (line) => {
+    indexOfColonForKeys = line.indexOf(':');
+    //For displaying content in key : value form
+    if(line.length === 0){
+        newLine = {
+        key : "",
+        value : "",
+        };
+        newLine.str = "";
+    } else if((line.length > 0) && (line.indexOf(':')<0)){
+        newLine = {
+            key : "",
+            value : line
+        }
+        newLine.str = newLine.value;
+    }else{
+                newLine = {
+                    key :  line.slice(0, indexOfColonForKeys),
+                    value : line.slice(indexOfColonForKeys+1, line.length)                
+                };
+                newLine.str = newLine.key + ":" + newLine.value
+    }
+        lines.push(newLine);
+});  
 /* Index page */
 app.get('/', (req, res)=>{
-    if(typeOfOs === "Darwin"){
-        typeOfOs = "Darwin(MacOs)"
-        res.render('welcome_darWin', {typeOfOs : typeOfOs})
-    } else if(typeOfOs === "Linux" || typeOfOs === "Windows_NT"){
-        res.render('welcome_linux', {typeOfOs: typeOfOs})
-    }
+    let typeOfOs = process.platform
+  res.render('welcome', {data: data, lines : lines, typeOfOs: typeOfOs})
+
 });
 
 
 app.get('/index', (req, res)=>{
-    res.render('index', {packageNames : packageNames.sort(), typeOfOs : typeOfOs})
+    for (let key in packInfo) {
+        keys.push(key)
+        values.push(packInfo[key])
+       }
+    res.render('index', {packageNames : packageNames.sort()})
 })
 
 
 /* Show package page */
+let packInfo = {};
 app.get('/:id', (req, res)=>{
-    const packageUrl = req.params.id;
-
-    let packInfo = {}, keys = [], values = []
-    
+    let keys = [], values = []
+    const packageUrl = req.params.id;    
     Object.values(allPackages).forEach((pack)=>{
         if(pack.name === packageUrl){
             packInfo = pack.allInfo
@@ -120,7 +151,7 @@ app.get('/:id', (req, res)=>{
        values.push(packInfo[key])
       }
     
-    res.render('show', {packageUrl : packageUrl, keys : keys, values: values, packageNames : packageNames, packInfo:packInfo})
+      res.render('show', {packageUrl : packageUrl, keys : keys, values: values, packageNames: packageNames.sort(), packInfo:packInfo})
 })
 
 
