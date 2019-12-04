@@ -2,12 +2,7 @@
 
 <nav class="welcome">
         <h1>Hello!</h1>
-        <%if(typeOfOs === 'darwin'){%>
-            <%typeOfOs = "MacOs "%>
-       <%} else{%>
-           <%typeOfOs = typeOfOs.charAt(0) + typeOfOs.slice(1)%>
-       <%}%>
-        <p id="welcomeMessage"><%=typeOfOs%> detected</p>
+        <p id="welcomeMessage"></p>
 
 </nav>
 

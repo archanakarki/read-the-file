@@ -119,8 +119,8 @@ rl.on('line', (line) => {
 });  
 /* Index page */
 app.get('/', (req, res)=>{
-    let typeOfOs = process.platform
-  res.render('welcome', {data: data, lines : lines, typeOfOs: typeOfOs})
+    // let typeOfOs = process.platform
+  res.render('welcome', {data: data, lines : lines})
 
 });
 

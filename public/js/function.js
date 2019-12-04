@@ -1,18 +1,21 @@
+let typeOfOs = window.navigator.userAgent
+
 //When the element of page are rendered
 //This avoids returning null object on document.getElemnentBy... selectors
 window.onload = ()=>{
-    let typeOfOs = document.getElementById('welcomeMessage').textContent
+    let welcomeMessage = document.getElementById('welcomeMessage')
     let messageAboutFile = document.getElementById('messageAboutFile')
     let viewSampleDataButton = document.getElementById('viewSampleDataButton')
     let sampleData = document.getElementById('sampleData')
     // let download = document.getElementById('download')
 
-    if(typeOfOs.match(/MacOs/g)){
+    if(typeOfOs.match(/Macintosh/g)){
+        welcomeMessage.textContent = "MacOs detected"
         messageAboutFile.style.display = "block"
     } else if(typeOfOs.match(/Linux/g)){
-        messageAboutFileLinux.style.display = "block"
+        welcomeMessage.textContent = "Linux detected"
     } else if(typeOfOs.match(/Windows/g)){
-        messageAboutFile.style.display = "block"
+        welcomeMessage.textContent = "Windows detected"
     }
 
 
