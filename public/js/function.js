@@ -9,28 +9,17 @@ window.onload = ()=>{
     let sampleData = document.getElementById('sampleData')
     // let download = document.getElementById('download')
 
-    if(typeOfOs.match(/Macintosh/g)){
-        welcomeMessage.textContent = "MacOs detected"
-        messageAboutFile.style.display = "block"
-    } else if(typeOfOs.match(/Linux/g)){
-        welcomeMessage.textContent = "Linux detected"
-    } else if(typeOfOs.match(/Windows/g)){
-        welcomeMessage.textContent = "Windows detected"
-    }
+    // if(typeOfOs.match(/Macintosh/g)){
+    //     welcomeMessage.textContent = "MacOs is detected"
+    //     messageAboutFile.style.display = "block"
+    // } else if(typeOfOs.match(/Linux/g)){
+    //     welcomeMessage.textContent = "Linux is detected"
+    // } else if(typeOfOs.match(/Windows/g)){
+    //     welcomeMessage.textContent = "Windows is detected"
+    // }
 
-
-
-//Displays all data on click
-viewSampleDataButton.addEventListener('click', (event)=>{
-    if(sampleData.style.display == "none"){
-        viewSampleDataButton.style.backgroundColor = "#4da6ff"
-        sampleData.style.display = "block"
-        viewSampleDataButton.textContent = "Hide sample data"
-    } else{
-        viewSampleDataButton.style.backgroundColor = "#4D4D4D"
-        sampleData.style.display = "none"
-        viewSampleDataButton.value = "View sample data"
-    }
-})
-
+       if(typeOfOs.match(/Macintosh/g)){
+        welcomeMessage.textContent = "Linux is detected"
+        messageAboutFileLinux.style.display = "block"
+    } 
 }

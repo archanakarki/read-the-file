@@ -3,11 +3,13 @@ const express = require('express')
 const app = express()
 const os = require('os')
 const fs = require('fs')
+const path = require('path')
 const readline = require('readline');
 const PORT = process.env.PORT || 3000
 //App configurations
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
+
 
 /* Package Description */
 
@@ -124,6 +126,9 @@ app.get('/', (req, res)=>{
 
 });
 
+app.get('/data', (req, res)=>{
+    res.render('data',{lines : lines})
+})
 
 app.get('/index', (req, res)=>{
     for (let key in packInfo) {
@@ -133,6 +138,11 @@ app.get('/index', (req, res)=>{
     res.render('index', {packageNames : packageNames.sort()})
 })
 
+app.get('/locateSys', (req, res)=>{
+    let path = "/var/lib/dpkg/status/"
+
+    res.render('locate', {locatedData:locatedData})
+})
 
 /* Show package page */
 let packInfo = {};

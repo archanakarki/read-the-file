@@ -15,6 +15,10 @@ nav{
     padding : 10% auto;
     font-family: 'Sulphur Point', sans-serif;
 }
+
+#sampleNav{
+    text-align: left;
+}
  
 #packageNav {
 font-size : 18px;
@@ -70,6 +74,14 @@ li a{
 li a:link, a:visited, a:hover{
     color : #555555;
 }
+/* 
+p a:link, a:visited, a:hover{
+    color: #0066cc;
+    float: left;
+    text-decoration: none;
+    font-size: 17px;
+} */
+
 
 #tableDiv{
     width : 100%;
@@ -122,15 +134,6 @@ th{
     width:100px
 }
 
-.data{
-    text-align: left;
-    font-size: 15px;
-    color : black;
-    width : 50%;
-    margin : 0% 25%;
-    line-height: 1.2;
-}
-
 
 #messageAboutFile, #messageAboutFileLinux {
     color : #a3a3a3;
@@ -152,7 +155,8 @@ th{
     text-align: center;
     cursor: pointer;
     position: relative;
-    z-index: 3;
+    z-index: 2000;
+    border-radius: 50px;
 }
 
 #displayPackages a{
@@ -166,7 +170,16 @@ th{
 
 #sampleData{
     margin-top:2%;
-    display: none;
+    display: block;
+}
+
+.data{
+    text-align: left;
+    font-size: 15px;
+    color : black;
+    width : 50%;
+    margin : 0% 25%;
+    line-height: 1.5;
 }
 
 #buttons{
