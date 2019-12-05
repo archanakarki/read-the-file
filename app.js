@@ -139,9 +139,13 @@ app.get('/index', (req, res)=>{
 })
 
 app.get('/locateSys', (req, res)=>{
-    let path = "/var/lib/dpkg/status/"
-
-    res.render('locate', {locatedData:locatedData})
+    //let path = '/Users/archanakarki/Desktop/register/package-lock.json';
+    let path1 = path.dirname('/var/lib/dpkg/status')
+    let dir = fs.readdirSync(path1, 'utf-8')
+    // path = path.dirname('/var/lib/dpkg/status')
+    // let located = fs.readFileSync(path, 'utf-8')
+    console.log(dir)
+    res.render('locate')
 })
 
 /* Show package page */

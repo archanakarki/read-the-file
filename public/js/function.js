@@ -9,17 +9,16 @@ window.onload = ()=>{
     let sampleData = document.getElementById('sampleData')
     // let download = document.getElementById('download')
 
-    // if(typeOfOs.match(/Macintosh/g)){
-    //     welcomeMessage.textContent = "MacOs is detected"
-    //     messageAboutFile.style.display = "block"
-    // } else if(typeOfOs.match(/Linux/g)){
-    //     welcomeMessage.textContent = "Linux is detected"
-    // } else if(typeOfOs.match(/Windows/g)){
-    //     welcomeMessage.textContent = "Windows is detected"
-    // }
-
-       if(typeOfOs.match(/Macintosh/g)){
+    if(typeOfOs.match(/Macintosh/g)){
+        welcomeMessage.textContent = "MacOs is detected"
+        messageAboutFile.style.display = "block"
+    } else if(typeOfOs.match(/Linux/g)){
         welcomeMessage.textContent = "Linux is detected"
         messageAboutFileLinux.style.display = "block"
     } 
+    //else if(typeOfOs.match(/Windows/g)){
+    //     welcomeMessage.textContent = "Windows is detected"
+    // }
+
+
 }
