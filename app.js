@@ -139,12 +139,32 @@ app.get('/index', (req, res)=>{
 })
 
 app.get('/locateSys', (req, res)=>{
-    //let path = '/Users/archanakarki/Desktop/register/package-lock.json';
-    let path1 = path.dirname('/var/lib/dpkg/status')
-    let dir = fs.readdirSync(path1, 'utf-8')
-    // path = path.dirname('/var/lib/dpkg/status')
-    // let located = fs.readFileSync(path, 'utf-8')
-    console.log(dir)
+    // let path = path.dirname('/var/lib/dpkg/status')
+    // let filePath = path.dirname('/var/lib/dpkg/')
+    // let fileNameArr = fs.readdirSync(filePath, 'utf-8')
+
+    // let fileName = fileNameArr.forEach((fileName)=>{
+    //     if(fileName.match(/postfix/g)){
+    //         return fileName
+    //     }
+    // })
+
+    // let status = fs.readFileSync(fileName, 'utf-8')
+   
+
+    let directory = path.dirname('/var/lib/dpkg/')
+    let dirBuf = Buffer.from(directory)
+
+    // let files = fs.readdirSync(directory, 'buffer')
+
+  fs.readdir(dirBuf, (err, files)=>{
+      if(err) throw err
+      fs.readFile(files[0], 'utf8', (err, status)=>{
+          if(err) throw err
+          console.log(status)
+      } )
+  })
+    // console.log(files)
     res.render('locate')
 })
 
