@@ -12,9 +12,25 @@ app.use(express.static(__dirname + '/public'));
 
 
 /* Package Description */
-
+let osType = process.platform
 let data, splitData, packageIndex = [], allPackages = {}, packageNames = [];
-data = fs.readFileSync('./status.real', 'utf-8') 
+
+if(osType !== 'linux'){
+    data = fs.readFileSync('./status.real', 'utf-8') 
+} else {
+    let directory = path.dirname('/var/lib/dpkg/status/')
+    let dirBuf = Buffer.from(directory)
+    let files = fs.readdirSync(dirBuf, 'utf8')
+    let status;
+    for(let i = 0; i < files.length; i++){
+        if(files[i] === 'status' && !(files[i] === 'status-old')){
+             status = files[i]
+             data = fs.readFileSync(path.join(directory, status), 'utf8')
+        }
+    }
+}
+
+
     splitData = data.split(/[\s\n\r]/g)
     //Create array of package in splitted data arr
     let keys = [], values = [], pkgName; 
@@ -121,9 +137,8 @@ rl.on('line', (line) => {
 });  
 /* Index page */
 app.get('/', (req, res)=>{
-    // let typeOfOs = process.platform
+  //console.log(osType)
   res.render('welcome', {data: data, lines : lines})
-
 });
 
 app.get('/data', (req, res)=>{
@@ -138,35 +153,24 @@ app.get('/index', (req, res)=>{
     res.render('index', {packageNames : packageNames.sort()})
 })
 
+
 app.get('/locateSys', (req, res)=>{
-    // let path = path.dirname('/var/lib/dpkg/status')
-    // let filePath = path.dirname('/var/lib/dpkg/')
-    // let fileNameArr = fs.readdirSync(filePath, 'utf-8')
-
-    // let fileName = fileNameArr.forEach((fileName)=>{
-    //     if(fileName.match(/postfix/g)){
-    //         return fileName
-    //     }
-    // })
-
-    // let status = fs.readFileSync(fileName, 'utf-8')
-   
-
-    let directory = path.dirname('/var/lib/dpkg/')
+    let directory = path.dirname('/var/lib/dpkg/status/')
     let dirBuf = Buffer.from(directory)
-
-    // let files = fs.readdirSync(directory, 'buffer')
-
-  fs.readdir(dirBuf, (err, files)=>{
-      if(err) throw err
-      fs.readFile(files[0], 'utf8', (err, status)=>{
-          if(err) throw err
-          console.log(status)
-      } )
-  })
-    // console.log(files)
-    res.render('locate')
+    let files = fs.readdirSync(dirBuf, 'utf8')
+    let status, error;
+    for(let i = 0; i < files.length; i++){
+        if(files[i] === 'status' && !(files[i] === 'status-old')){
+             status = files[i]
+             data = fs.readFileSync(path.join(directory, status), 'utf8')
+        } else {
+            error = 'Status file is not found in /var/lib/dpkg/, use the sample status file.'
+            res.render('locate', {error : error})
+        }
+    }
+    res.redirect('/')
 })
+
 
 /* Show package page */
 let packInfo = {};
