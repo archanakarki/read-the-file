@@ -137,8 +137,10 @@ rl.on('line', (line) => {
 });  
 /* Index page */
 app.get('/', (req, res)=>{
-  //console.log(osType)
-  res.render('welcome', {data: data, lines : lines})
+    if(osType === 'linux'){
+        res.render('welcome_linux', {data: data, lines : lines})
+    }
+     res.render('welcome', {data: data, lines : lines})
 });
 
 app.get('/data', (req, res)=>{

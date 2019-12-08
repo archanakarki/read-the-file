@@ -1,0 +1,20 @@
+<%- include('partials/header'); -%>
+
+<nav class="welcome">
+        <h1>Hello!</h1>
+        <p id="welcomeMessage"></p>
+
+</nav>
+
+<div>
+            <p id= "messageAboutFileLinux">
+                    Location for system file is /var/lib/dpkg/status.<br>
+                   <a href="/locateSys"><button id="locateFileButton">Locate system file</button></a>
+                        <span id="buttons">
+                        <a href="/data"><button id="viewSampleDataButton">View sample data</button></a> 
+                        <a href="/index"> <button id="displayPackages">Display all packages</button></a>
+                        </span>
+                </p>        
+</div>
+
+<%- include('partials/footer'); -%>

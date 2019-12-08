@@ -10,10 +10,13 @@ window.onload = ()=>{
     // let download = document.getElementById('download')
 
     if(typeOfOs.match(/Macintosh/g) || typeOfOs.match(/Windows/g)){
-        welcomeMessage.textContent = typeOfOs + " is detected"
+        welcomeMessage.textContent =  "Mac OS is detected."
+        messageAboutFile.style.display = "block"
+    } else if(typeOfOs.match(/Windows/g)){
+        welcomeMessage.textContent = " Windows OS is detected."
         messageAboutFile.style.display = "block"
     } else if(typeOfOs.match(/Linux/g)){
-        welcomeMessage.textContent = "Linux is detected"
+        welcomeMessage.textContent = "Linux OS is detected."
         messageAboutFileLinux.style.display = "block"
     }
 }
