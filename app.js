@@ -137,7 +137,7 @@ rl.on('line', (line) => {
 });  
 /* Index page */
 app.get('/', (req, res)=>{
-  console.log(osType)
+  //console.log(osType)
   res.render('welcome', {data: data, lines : lines})
 });
 
@@ -153,19 +153,24 @@ app.get('/index', (req, res)=>{
     res.render('index', {packageNames : packageNames.sort()})
 })
 
+
 app.get('/locateSys', (req, res)=>{
     let directory = path.dirname('/var/lib/dpkg/status/')
     let dirBuf = Buffer.from(directory)
     let files = fs.readdirSync(dirBuf, 'utf8')
-    let status;
+    let status, error;
     for(let i = 0; i < files.length; i++){
         if(files[i] === 'status' && !(files[i] === 'status-old')){
              status = files[i]
              data = fs.readFileSync(path.join(directory, status), 'utf8')
+        } else {
+            error = 'Status file is not found in /var/lib/dpkg/, use the sample status file.'
+            res.render('locate', {error : error})
         }
     }
     res.redirect('/')
 })
+
 
 /* Show package page */
 let packInfo = {};
