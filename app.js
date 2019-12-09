@@ -139,8 +139,9 @@ rl.on('line', (line) => {
 app.get('/', (req, res)=>{
     if(osType === 'linux'){
         res.render('welcome_linux', {data: data, lines : lines})
+    } else{
+        res.render('welcome', {data: data, lines : lines})
     }
-     res.render('welcome', {data: data, lines : lines})
 });
 
 app.get('/data', (req, res)=>{
