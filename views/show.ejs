@@ -23,31 +23,32 @@
                 <tr>
                     <th> <h1 id="showh1"><%=packageUrl%></h1></th>
                 </tr>
+
                 <%for(let i = 0; i < keys.length; i++){%>
                     <tr>
                         <%if((keys[i].match(/Package/g)) || (keys[i].match(/Description/g)) || (keys[i].match(/Depends/g))){%>
                             <td class="keys" id="keys"><%=keys[i]%></td>
                             <!--Finding if the values of Descriptions matched any text from package-->
-                            <!--Turning the matching package name as link-->
-                           <!-- <% if(keys[i].match(/Depends/g)){ %>
-                            <td class="values" id="values">
-                                <%let allText = values[i].split(', ')%>
-                                <%allText.forEach((each)=>{%>
-                                    <%if(!each.match(/[^(][)$]/g)){%>
-                                    <a href="/<%=each%>"><%=each%><br></a>
-                                    <%}%>
-                                <%})%>
-                            </td> -->
-                                <!-- <td class="values" id="values"><%=values[i]%></td> -->
-                            <!-- <%} else{%> -->
-                                <td class="values" id="values"><%=values[i]%></td>
+                                <!--Turning the matching package name as link-->
+                                <% if(keys[i].match(/Depends/g)){ %>
+                                <td class="values" id="values">
+                                    <%let allText = values[i].split(/[,|] /g)%>
+                                    <%allText.forEach((each)=>{%>
+                                        <%if(!each.match(/[^(][)$]/g)){%>
+                                        <a href="/<%=each%>"><%=each%><br></a>
+                                        <%}%>
+                                    <%})%>
+                                </td>
+                                    <%} else{%>
+                                    <td class="values" id="values"><%=values[i]%></td>
+                                <%}} else{%>
+                                <td id="keys"><%=keys[i]%></td>
+                                <td id="values"><%=values[i]%></td>
                             <%}%>
-                        <%} else{%>
-                            <td id="keys"><%=keys[i]%></td>
-                            <td id="values"><%=values[i]%></td>
-                        <%}%>
                     </tr>
-                    <%}%>
+                <%}%>
+
+                    
             </table>
 </div>
 
