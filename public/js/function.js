@@ -18,5 +18,8 @@ window.onload = ()=>{
     } else if(typeOfOs.match(/Linux/g)){
         welcomeMessage.textContent = "Linux OS is detected."
         messageAboutFileLinux.style.display = "block"
+    } else{
+        welcomeMessage.textContent =  typeOfOs + " is detected."
+        messageAboutFile.style.display = "block"
     }
 }
