@@ -6,30 +6,31 @@ const fs = require('fs')
 const path = require('path')
 const readline = require('readline');
 const PORT = process.env.PORT || 3000
+
+
 //App configurations
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
 
 
 /* Package Description */
-let osType = process.platform
+let osType = os.platform()
 let data, splitData, packageIndex = [], allPackages = {}, packageNames = [];
 
-if(osType !== 'linux'){
+// if(osType !== 'linux'){
     data = fs.readFileSync('./status.real', 'utf-8') 
-} else {
-    let directory = path.dirname('/var/lib/dpkg/status/')
-    let dirBuf = Buffer.from(directory)
-    let files = fs.readdirSync(dirBuf, 'utf8')
-    let status;
-    for(let i = 0; i < files.length; i++){
-        if(files[i] === 'status' && !(files[i] === 'status-old')){
-             status = files[i]
-             data = fs.readFileSync(path.join(directory, status), 'utf8')
-        }
-    }
-}
-
+// } else {
+//         let directory = path.dirname('/var/lib/dpkg/status/')
+//         let dirBuf = Buffer.from(directory)
+//         let files = fs.readdirSync(dirBuf, 'utf8')
+//         let status;
+//         for(let i = 0; i < files.length; i++){
+//             if(files[i] === 'status' && !(files[i] === 'status-old')){
+//                 status = files[i]
+//                 data = fs.readFileSync(path.join(directory, status), 'utf8')
+//             }
+//         }
+// }
 
     splitData = data.split(/[\s\n\r]/g)
     //Create array of package in splitted data arr
@@ -154,20 +155,25 @@ app.get('/index', (req, res)=>{
 
 
 app.get('/locateSys', (req, res)=>{
-    let directory = path.dirname('/var/lib/dpkg/status/')
-    let dirBuf = Buffer.from(directory)
-    let files = fs.readdirSync(dirBuf, 'utf8')
-    let status, error;
-    for(let i = 0; i < files.length; i++){
-        if(files[i] === 'status' && !(files[i] === 'status-old')){
-             status = files[i]
-             data = fs.readFileSync(path.join(directory, status), 'utf8')
-        } else {
-            error = 'Status file is not found in /var/lib/dpkg/, use the sample status file.'
-            res.render('locate', {error : error})
+    let directory, dirBuf, files, status, error;
+    try{
+        directory = path.dirname('/var/lib/dpkg/status/')
+        dirBuf = Buffer.from(directory)
+        files = fs.readdirSync(dirBuf, 'utf8')
+        for(let i = 0; i < files.length; i++){
+            if(files[i] === 'status' && !(files[i] === 'status-old')){
+                 status = files[i]
+                 data = fs.readFileSync(path.join(directory, status), 'utf8')
+                 res.redirect('/')
+            } else {
+                error = 'Status file is not found in /var/lib/dpkg/, use the sample status file.'
+            }
         }
+        // res.redirect('/')
+        
+    } catch(e){
+        res.render('locate', {error : e})
     }
-    res.redirect('/')
 })
 
 
