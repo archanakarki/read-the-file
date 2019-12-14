@@ -32,19 +32,22 @@
                                 <!--Turning the matching package name as link-->
                                 <% if(keys[i].match(/Depends/g)){ %>
                                 <td class="values" id="values">
-                                    <%let allText = values[i].split(/[,|] /g)%>
-                                    <%allText.forEach((each)=>{%>
-                                        <%if(!each.match(/[^(][)$]/g)){%>
-                                        <a href="/<%=each%>"><%=each%><br></a>
-                                        <%}%>
-                                    <%})%>
+                                        <%let package = values[i].split(/[\s]/g)%>
+                                        <%package.forEach((each)=>{%>
+                                           <% if(!each.match(/[()=,|><]/) && each !== ''){ %>
+                                                <a href="/<%=each%>"><%=each%> <br> </a>
+                                            <%}%>
+                                            <%})%>
                                 </td>
-                                    <%} else{%>
+                                <%} else if(keys[i].match(/Description/g)){ %>
+                                        <%let capitalise = values[i].charAt(0).toUpperCase() + values[i].substring(1)%>
+                                        <td class="values" id="values"><%=capitalise%></td>
+                                 <%} else{%>
                                     <td class="values" id="values"><%=values[i]%></td>
-                                <%}} else{%>
+                         <%}} else{%>
                                 <td id="keys"><%=keys[i]%></td>
                                 <td id="values"><%=values[i]%></td>
-                            <%}%>
+                        <%}%>
                     </tr>
                 <%}%>
 
