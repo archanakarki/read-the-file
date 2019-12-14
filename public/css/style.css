@@ -195,7 +195,7 @@ th{
 }
 
 
-.values a:link, a:visited, a:hover{
+.values a:link, .values a:visited, .values a:hover{
     color: #0066cc;
     text-decoration: none;
 }
