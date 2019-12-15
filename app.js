@@ -169,8 +169,7 @@ app.get('/locateSys', (req, res)=>{
                 error = 'Status file is not found in /var/lib/dpkg/, use the sample status file.'
             }
         }
-        // res.redirect('/')
-        
+    //  res.redirect('/')
     } catch(e){
         res.render('locate', {error : e})
     }
