@@ -1,3 +1,8 @@
+/*
+This css file handles all the styling of the website
+This css file is connected with app.use(express.static(path.join(__dirname, 'public'))); in app.js
+*/
+
 html{
     margin : 0;
     padding : 0;

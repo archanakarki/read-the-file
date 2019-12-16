@@ -1,9 +1,10 @@
 <%- include('partials/header'); -%>
 
-<p><a href="/">< Back to homepage</a></p>
+<!--Accessible from /data
+    Extracts and displays all content from status file as lines and not in key : value format-->
 
-            <h1 id="sampleNav">Sample data</h1> 
-
+    <p><a href="/">< Back to homepage</a></p>
+    <h1 id="sampleNav">Sample data</h1> 
     <div id="sampleData"> 
         <%lines.forEach((line)=>{%>
             <p class="data"><%=line.str%></p>

@@ -1,29 +1,31 @@
 <%- include('partials/header'); -%>
 
-<nav class="welcome">
-        <h1>Hello!</h1>
-        <p id="welcomeMessage"></p>
-</nav>
+        <!-- Accessible from / or is the homepage
+        Extracts and displays allpackage names -->
+        <nav class="welcome">
+                <h1>Hello!</h1>
+                <p id="welcomeMessage"></p>
+        </nav>
 
-<div>
-            <p id= "messageAboutFile">
-                    Your current operating system cannot locate /var/lib/dpkg/status. <br> 
-                    Path /var/lib/dpkg/status to system file is found in Debian and Ubuntu Systems. <br>
-                    <a id="download" href="https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa/archive/61a0f1150f33a1f31510b8e3a70cbac970892b2f.zip" download> Downloadable zipped sample data file</a><br>
-                    <span id="buttons">
-                    <a href="/data"><button id="viewSampleDataButton">View sample data</button></a> 
-                    <a href="/index"> <button id="displayPackages">Display all packages</button></a>
-                    </span>
+        <!-- Display or hiding of buttons based on operating system mainly if Linux or if not linux
+             but before trying to find /var/lib/dpkg/status file-->
+        <div>
+                <p id= "messageAboutFile">
+                Your current operating system cannot locate /var/lib/dpkg/status. <br> 
+                Path /var/lib/dpkg/status to system file is found in Debian and Ubuntu Systems. <br>
+                <a id="download" href="https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa/archive/61a0f1150f33a1f31510b8e3a70cbac970892b2f.zip" download> Downloadable zipped sample data file</a><br>
+                <span id="buttons">
+                <a href="/data"><button id="viewSampleDataButton">View sample data</button></a> 
+                <a href="/index"> <button id="displayPackages">Display all packages</button></a>
+                </span>
                 </p>
 
-            <p id= "messageAboutFileLinux">
-                    Location for system file is /var/lib/dpkg/status.<br>
-                   <a href="/locateSys"><button id="locateFileButton">Locate system file</button></a>
-                        <!-- <span id="buttons">
-                        <a href="/data"><button id="viewSampleDataButton">View sample data</button></a> 
-                        <a href="/index"> <button id="displayPackages">Display all packages</button></a>
-                        </span> -->
+                <p id= "messageAboutFileLinux">
+                Location for system file is /var/lib/dpkg/status.<br>
+                <span id="buttons">
+                <a href="/locateSys"><button id="locateFileButton">Locate system file</button></a>
+                </span>
                 </p>        
-</div>
+        </div>
 
 <%- include('partials/footer'); -%>

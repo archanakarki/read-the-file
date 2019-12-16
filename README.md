@@ -13,7 +13,7 @@
             - The names of the packages that depend on the current package
         The dependencies and reverse dependencies should be clickable and the user can navigate the package structure by clicking from package to package.
 
-### Some things to keep in mind
+### Some things to keep in mind were
 
     - Minimum use of external dependencies.
     - The main design goal of this program is clean, simple, maintainable and readable code.
@@ -23,3 +23,5 @@
 
 #### The solution should run on non-Debian systems as well. 
 #### Sample data file can be found in (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
+
+### Implementation of the solution
