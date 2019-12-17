@@ -1,4 +1,4 @@
-# Read the file pre assignment
+# Pre-assignment
 
 ### Task is to:
 
@@ -25,3 +25,26 @@
 #### Sample data file can be found in (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
 
 ### Implementation of the solution
+
+    Tech stack used are Express, Node.js and ejs template engine for views. Mostly used nodejs file system(fs) module to read or access files.
+
+    For only displaying sample file:
+    - File is read line by line with readline module and few Regular expressions(RegEx).
+
+    For displaying individal packages:
+    - fs module is used to readFile, 
+    - regular expressions(RegEx) to split the data received,
+    - built in JavaScript Object methods to extract and create object for all packages and
+    - array methods like forEach to turn dependencies string to links
+
+### Folder structure
+
+    Public - Includes css and js files for entire website
+    Views  - Includes all the html templates in ejs form
+    app.js - Contains all the app configuration and applications logic
+    package.json - App's information and dependencies
+    README.md - Information about the problem and implementation of solution
+    status.real - Sample status file used throughout the app, in case the client OS is linux or other than linux, and if the access to local status file is denied.
+
+
+

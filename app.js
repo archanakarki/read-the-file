@@ -176,22 +176,29 @@ app.get('/index', (req, res)=>{
 /* Detects if status file exists */
 app.get('/locateSys', (req, res)=>{
     let directory, dirBuf, files, status, error;
-    try{
+
+    /* 
+    Checking for access of file 
+    */
+
+   try {
+        fs.accessSync('/var/lib/dpkg/status', fs.constants.R_OK | fs.constants.W_OK);
         directory = path.dirname('/var/lib/dpkg/status/')
         dirBuf = Buffer.from(directory)
         files = fs.readdirSync(dirBuf, 'utf8')
         for(let i = 0; i < files.length; i++){
             if(files[i] === 'status' && !(files[i] === 'status-old')){
-                 status = files[i]
-                 data = fs.readFileSync(path.join(directory, status), 'utf8')
-                 res.redirect('/index')
+                status = files[i]
+                data = fs.readFileSync(path.join(directory, status), 'utf8')
+                res.render('/locate', {data : data})
             } 
         }
-    } catch(e){
-        res.render('locate', {error : e})
-    }
+        console.log('The file can be read/write');
+  } catch (err) {
+        console.error('No access to the file!');
+        res.render('locate', {error : err})
+  }
 })
-
 
 /* Show individual package page */
 let packInfo = {};

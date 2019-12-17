@@ -7,7 +7,7 @@
 
         <%if(error){%>
                 <!-- In case of either file not found or other error -->
-                <h1>Use sample status file</h1>
+                <h1>Use sample status file instead of unfetched local status file</h1>
                 <p><%=error%></p>
                 <p id="fileNotFound">
                         <span id="buttons">
@@ -17,6 +17,7 @@
                         </span>
                 </p>
         <%} else{%>
+                <%=data%>
                 <!-- If file successfully found -->
                 <h1>From detected status file</h1>
                 <p id="fileFound">
