@@ -46,5 +46,17 @@
     README.md - Information about the problem and implementation of solution
     status.real - Sample status file used throughout the app, in case the client OS is linux or other than linux, and if the access to local status file is denied.
 
+### Images of
+    Homepage
+<img width="791" alt="Homepage" src="https://user-images.githubusercontent.com/39858235/70989119-bb3cdf00-20cb-11ea-8c43-5b91f045ff10.png">
+
+    Sample file page
+<img width="772" alt="Sample file" src="https://user-images.githubusercontent.com/39858235/70989121-bbd57580-20cb-11ea-9a46-4470bcd4076e.png">
+
+    All packages name list page
+<img width="690" alt="All packages name list" src="https://user-images.githubusercontent.com/39858235/70989123-bbd57580-20cb-11ea-9627-2c411061f46d.png">
+
+    Individual package details page
+<img width="1231" alt="Individual package details" src="https://user-images.githubusercontent.com/39858235/70989125-bc6e0c00-20cb-11ea-9f83-5b6daba723fb.png">
 
 
