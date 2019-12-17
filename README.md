@@ -1,4 +1,4 @@
-# Read the file - pre-assignment
+# Read the file
 
 ### Task is to:
 
