@@ -1,0 +1,206 @@
+/*
+This css file handles all the styling of the website
+This css file is connected with app.use(express.static(path.join(__dirname, 'public'))); in app.js
+*/
+
+html{
+    margin : 0;
+    padding : 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Barlow', sans-serif;
+}
+
+body{
+background-attachment: fixed;
+padding : 2%
+}
+
+nav{
+    max-width : 100%;
+    padding : 10% auto;
+    font-family: 'Sulphur Point', sans-serif;
+}
+
+#sampleNav{
+    text-align: left;
+}
+ 
+#packageNav {
+font-size : 18px;
+width : 100%;
+color: #0066cc;
+}
+
+#packageNav ul{
+display: flex;
+flex-flow: row wrap;
+justify-content: space-around;
+align-items: center;
+}
+
+
+#packageNav ul li{
+display: inline;
+margin:1.66%;
+}
+
+#packageNav ul li a{
+color: #0066cc;
+}
+
+
+h1{
+    width : 50%;
+    margin : 7% auto;
+    margin-bottom: 3%;
+    text-align: center;
+    font-size: 3em;
+    color:  #333333;
+
+}
+
+p {
+    text-align: center;
+    color : #a3a3a3;
+    font-style: bold;
+    font-size: 1.5rem;
+}
+
+li{
+    text-align: center;
+    list-style-type: none;
+    line-height: 1.7;
+}
+
+li a{
+    text-decoration: none;
+}
+
+li a:link, a:visited, a:hover{
+    color : #555555;
+}
+/* 
+p a:link, a:visited, a:hover{
+    color: #0066cc;
+    float: left;
+    text-decoration: none;
+    font-size: 17px;
+} */
+
+
+#tableDiv{
+    width : 100%;
+    height : auto;
+    float : left
+}
+
+table{
+    width : 50%;
+    margin : 1% auto;
+    font-size: 1.1em;
+}
+
+td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+th{
+    width : 45%;
+    padding-bottom: 5%;
+}
+
+
+#showh1{
+    text-transform: capitalize;
+    width : 100%;
+    margin : 0% auto;
+    font-size: 40px;
+    text-align: left;
+    color: #0066cc;
+}
+
+#packageName{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#tableDiv{
+    font-size : 0.85em;
+    color : #4d4d4d
+}
+
+.welcome{
+    padding : 0% 3%
+}
+
+.newMessage{
+    background-color: green;
+    width:100px
+}
+
+
+#messageAboutFile, #messageAboutFileLinux {
+    color : #a3a3a3;
+    font-size: 16px;
+    line-height: 2;
+    display: none;
+}
+
+#viewSampleDataButton, #displayPackages, #locateFileButton{
+    border: none;
+    font-family: 'Sulphur Point', sans-serif;
+    background-color: #4d4d4d;
+    color: white;
+    padding : 1.5%;
+    margin : 1% 3%;
+    width: 300px;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 2000;
+    border-radius: 50px;
+}
+
+#displayPackages a{
+    color:white;
+    text-decoration: none;   
+}
+
+#download{
+    color : #0066cc;
+}
+
+#sampleData{
+    margin-top:2%;
+    display: block;
+}
+
+.data{
+    text-align: left;
+    font-size: 15px;
+    color : black;
+    width : 50%;
+    margin : 0% 25%;
+    line-height: 1.5;
+}
+
+#buttons{
+    width: 100%;
+    padding : 2%;
+    display: inline-block;
+}
+
+.keys, .values{
+    font-weight: bolder;
+    color: #0066cc;
+    font-size: 20px;
+}
+
+
+.values a:link, .values a:visited, .values a:hover{
+    color: #0066cc;
+    text-decoration: none;
+}
