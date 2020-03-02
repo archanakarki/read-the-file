@@ -1,9 +1,28 @@
 .App {
   text-align: left;
-  width : 80%;
-  margin : 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.App h1{
-  /* text-align: center; */
+.App h1 {
+  padding: 2% 0;
+}
+
+.App-sortAZ,
+.App-sortZA {
+  width:10%;
+  outline: none;
+  padding: 1%;
+  margin: 0 2% 2% 0;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: 'Roboto';
+  letter-spacing: 1.5px;
+  font-size: 1em;
+}
+
+.App-sortAZ:active,
+.App-sortZA:active {
+  background-color: rgb(100, 149, 237);
+  color: rgb(255, 255, 255);
 }
