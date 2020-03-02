@@ -5,7 +5,7 @@ Live Demo of previous version made with Express and EJS : https://readthefile.he
 
 Live Demo of current version being refactored with React and Express : Not updated in heroku but shown in images.
 
-<img width="600" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
+<img width="90%" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
 
 
 ### Task is to:
@@ -30,7 +30,7 @@ Live Demo of current version being refactored with React and Express : Not updat
     - The section “Syntax of control files” of the Debian Policy Manual applies to the input data.
 
 #### The solution should run on non-Debian systems as well. 
-#### Sample data file can be found in (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
+#### Sample data 'status.real' file is used from (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
 
 ### Implementation of the solution
 
