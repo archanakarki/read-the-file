@@ -21,11 +21,7 @@
     - Sometimes there are alternates in a dependency list, separated by the pipe character |. - When rendering alternate dependencies as mentioned in previous point, render any alternative that maps to a package name that has an entry in the file as a link and just print the name of the package name for other packages.
     - The section “Syntax of control files” of the Debian Policy Manual applies to the input data.
 
-<<<<<<< HEAD
 #### The solution should run on non-Debian systems as well. 
-=======
-#### The solution should run on non-Debian systems as well.
->>>>>>> f1104b6186e1d7a9c9058436e5e71973d6298b20
 #### Sample data file can be found in (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
 
 ### Implementation of the solution
@@ -51,11 +47,7 @@
 
 `git clone https://github.com/archanakarki/read-the-file.git`
 
-<<<<<<< HEAD
 - In terminal : 
-=======
-- In terminal :
->>>>>>> f1104b6186e1d7a9c9058436e5e71973d6298b20
 ```
 cd read-the-file
 - Open two seperate terminal window(or in VSCode use split terminal window option)
