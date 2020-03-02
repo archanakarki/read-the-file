@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# !!! (Updated) Read the file - assignment
-=======
 # Read the file - assignment
->>>>>>> 1ca9b96f3c03975fa563551a1c653b4845f5e1d3
 
 ### Task is to:
 
@@ -25,29 +21,21 @@
     - Sometimes there are alternates in a dependency list, separated by the pipe character |. - When rendering alternate dependencies as mentioned in previous point, render any alternative that maps to a package name that has an entry in the file as a link and just print the name of the package name for other packages.
     - The section “Syntax of control files” of the Debian Policy Manual applies to the input data.
 
-#### The solution should run on non-Debian systems as well. 
+#### The solution should run on non-Debian systems as well.
 #### Sample data file can be found in (https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa).
 
 ### Implementation of the solution
 
-<<<<<<< HEAD
-    Tech stack used are Express, Node.js, Axios with React. Used Nodejs file system(fs) module to read or access files. 
-=======
-    Tech stack used are Express, Node.js and ejs template engine for views. Mostly used nodejs file system(fs) module to read or access files.
-
-    For only displaying sample file:
-    - File is read line by line with readline module and few Regular expressions(RegEx).
->>>>>>> 1ca9b96f3c03975fa563551a1c653b4845f5e1d3
+    Tech stack used are Express, Node.js, Axios with React. Used Nodejs file system(fs) module to read or access files.
 
     For displaying individal packages:
-    - fs module is used to readFile, 
+    - fs module is used to readFile,
     - regular expressions(RegEx) to split the data received,
     - built in JavaScript Object methods to extract and create object for all packages and
     - array methods like forEach to turn dependencies string to links
 
 ### Folder structure
 
-<<<<<<< HEAD
     backend - Includes server files with Express
     frontend  - Includes all related to frontend with React/Axios
     README.md - This file
@@ -59,7 +47,7 @@
 
 `git clone https://github.com/archanakarki/read-the-file.git`
 
-- In terminal : 
+- In terminal :
 ```
 cd read-the-file
 - Open two seperate terminal window(or in VSCode use split terminal window option)
@@ -76,26 +64,3 @@ npm install
 npm start
 ```
 - Frontend views runs in http://localhost:3000 and server side data runs in http://localhost:3001
-=======
-    Public - Includes css and js files for entire website
-    Views  - Includes all the html templates in ejs form
-    app.js - Contains all the app configuration and applications logic
-    package.json - App's information and dependencies
-    README.md - Information about the problem and implementation of solution
-    status.real - Sample status file used throughout the app, in case the client OS is linux or other than linux, and if the access to local status file is denied.
-
-### Images of
-    Homepage
-<img width="791" alt="Homepage" src="https://user-images.githubusercontent.com/39858235/70989119-bb3cdf00-20cb-11ea-8c43-5b91f045ff10.png">
-
-    Sample file page
-<img width="772" alt="Sample file" src="https://user-images.githubusercontent.com/39858235/70989121-bbd57580-20cb-11ea-9a46-4470bcd4076e.png">
-
-    All packages name list page
-<img width="690" alt="All packages name list" src="https://user-images.githubusercontent.com/39858235/70989123-bbd57580-20cb-11ea-9627-2c411061f46d.png">
-
-    Individual package details page
-<img width="1231" alt="Individual package details" src="https://user-images.githubusercontent.com/39858235/70989125-bc6e0c00-20cb-11ea-9f83-5b6daba723fb.png">
-
-
->>>>>>> 1ca9b96f3c03975fa563551a1c653b4845f5e1d3
