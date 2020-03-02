@@ -1,4 +1,4 @@
-# !!! (Updated) Read the file - assignment
+# Read the file - assignment
 
 ### Task is to:
 
