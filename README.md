@@ -3,9 +3,9 @@ This project is an express application that reads a sample status file of Debian
 
 Live Demo of previous version made with Express and EJS : https://readthefile.herokuapp.com/
 
-Live Demo of current version being refactored with React and EJS : Not updated in heroku but shown in images.
+Live Demo of current version being refactored with React and Express : Not updated in heroku but shown in images.
 
-<img width="478" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
+<img width="600" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
 
 
 ### Task is to:
