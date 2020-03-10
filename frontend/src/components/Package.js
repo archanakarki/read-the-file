@@ -1,9 +1,10 @@
 import React from 'react'
+import './css/Package.css'
 
-const Package = ({name}) => {    
+const Package = ({name, onClick}) => {    
     return(
         <>
-            <p>{name}</p>
+          <p onClick={onClick}> <a href="!#">{name}</a> </p>
         </>
     )
 }

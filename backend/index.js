@@ -11,10 +11,7 @@ app.use(cors())
 
 app.get('/allPackages', (req, res) => {
     res.send({allPackages : db.allPackages.packages})
-    // res.send(db.allPackages.packages)
-
 })
-
 
 app.listen(3001, ()=>{
     console.log(`Server listening at 3001`)
