@@ -10,7 +10,10 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(37, 37, 37);
+  background-attachment: fixed;
+  background-size: cover;
+  backface-visibility: hidden;
+  background-image: url('./components/images/backgroundImage.jpg');
   color: white;
 }
 

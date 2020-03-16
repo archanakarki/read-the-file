@@ -1,0 +1,16 @@
+.Clicked{
+    width:100%;
+    padding: 8%;
+    margin: 5%;
+    background-color: rgba(00, 00, 00, 0.6);
+}
+
+
+.Clicked-title{
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.Clicked-package{
+  width: 80%;
+}

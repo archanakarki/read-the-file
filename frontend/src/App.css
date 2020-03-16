@@ -1,6 +1,7 @@
 .App {
   text-align: left;
   width: 80%;
+  font-size: 0.7em;
   margin: 0 auto;
 }
 
@@ -33,11 +34,12 @@
 }
 
 .App-left{
-  width:40%;
+  width:35%;
+  /* margin-right: 5%; */
   justify-content: flex-start;
 } 
 
 .App-right{
-  width: 60%;
+  width: 65;
   justify-content: flex-end;
 } 

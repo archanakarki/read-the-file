@@ -6,7 +6,6 @@ import ClickedPackage from './components/ClickedPackage';
 
 const App = () => {
   const [packages, setPackages] = useState([]);
-  // const [description, setDescription] = useState('');
   const [clickedPackage, setClickedPackageDetails] = useState({})
   const [len, setLength] = useState(0);
   useEffect(() => {
@@ -48,12 +47,7 @@ const App = () => {
   const sortZA = () => {
     setPackages(prevState => [...prevState].sort((a, b) => ascCompare(b, a)));
   };
-
-  // const displayDescription = description => {
-  //   console.log(description);
-  //   setDescription(description);
-  // };
-
+  
   const displayClickedPackageDetails = p => {
     console.log(`Clicked package details : ${p}`)
     setClickedPackageDetails(p.allInfo)
@@ -78,25 +72,13 @@ const App = () => {
               p={p}
               name={p.name}
               onClick = {()=> displayClickedPackageDetails(p)}
-              // onClick={() => displayDescription(p.allInfo['Description:'])}
             />
           ))}
           </div>
           <div className="App-right">
-            {/* <ClickedPackage clickedPackage={clickedPackage} /> */}
             <ClickedPackage clickedPackage={clickedPackage} />
           </div>
         </div>
-
-          {/* {packages.map((p, i) => (
-            <Package
-              key={i}
-              p={p}
-              name={p.name}
-              onClick={() => displayDescription(p.allInfo['Description:'])}
-            />
-          ))} */}
-          {/* <ClickedPackage description={description} /> */}
     </div>
   );
 };
