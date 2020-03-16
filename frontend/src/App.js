@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Package from './components/Package';
-import Description from './components/Description';
+import ClickedPackage from './components/ClickedPackage';
 
 const App = () => {
   const [packages, setPackages] = useState([]);
-  const [description, setDescription] = useState('');
+  // const [description, setDescription] = useState('');
+  const [clickedPackage, setClickedPackageDetails] = useState({})
   const [len, setLength] = useState(0);
   useEffect(() => {
     axios
@@ -40,18 +41,24 @@ const App = () => {
   };
 
   const sortAZ = () => {
-    setPackages(prevState => [...prevState].sort((a, b)=> ascCompare(a, b)));
+    setPackages(prevState => [...prevState].sort((a, b) => ascCompare(a, b)));
   };
 
   /* --- Descending order sorting --- */
   const sortZA = () => {
-    setPackages(prevState => [...prevState].sort((a, b)=>ascCompare(b, a)));
+    setPackages(prevState => [...prevState].sort((a, b) => ascCompare(b, a)));
   };
 
-  const displayDescription = description => {
-    console.log(description);
-    setDescription(description);
-  };
+  // const displayDescription = description => {
+  //   console.log(description);
+  //   setDescription(description);
+  // };
+
+  const displayClickedPackageDetails = p => {
+    console.log(`Clicked package details : ${p}`)
+    setClickedPackageDetails(p.allInfo)
+  }
+
 
   return (
     <div className='App'>
@@ -62,15 +69,34 @@ const App = () => {
       <button className='App-sortZA' onClick={sortZA}>
         Sort Z-A
       </button>
-      <Description description={description} />
-      {packages.map((p, i) => (
-        <Package
-          key={i}
-          p={p}
-          name={p.name}
-          onClick={() => displayDescription(p.allInfo['Description:'])}
-        />
-      ))}
+
+        <div className="App-row">
+          <div className="App-left">
+          {packages.map((p, i) => (
+            <Package
+              key={i}
+              p={p}
+              name={p.name}
+              onClick = {()=> displayClickedPackageDetails(p)}
+              // onClick={() => displayDescription(p.allInfo['Description:'])}
+            />
+          ))}
+          </div>
+          <div className="App-right">
+            {/* <ClickedPackage clickedPackage={clickedPackage} /> */}
+            <ClickedPackage clickedPackage={clickedPackage} />
+          </div>
+        </div>
+
+          {/* {packages.map((p, i) => (
+            <Package
+              key={i}
+              p={p}
+              name={p.name}
+              onClick={() => displayDescription(p.allInfo['Description:'])}
+            />
+          ))} */}
+          {/* <ClickedPackage description={description} /> */}
     </div>
   );
 };

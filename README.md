@@ -5,8 +5,11 @@ Live Demo of previous version made with Express and EJS : https://readthefile.he
 
 Live Demo of current version with React and Express : Not updated in heroku but shown in images.
 
-<img width="90%" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
+Updated!!!
+<img width="90%" alt="Screenshot 2020-03-16 at 14 44 21" src="https://user-images.githubusercontent.com/39858235/76759714-ebf8e700-6794-11ea-950d-c594657e358c.png">
 
+
+<img width="90%" alt="read-the-file-updated-with-buttons" src="https://user-images.githubusercontent.com/39858235/75652313-6be66380-5c63-11ea-8fae-45a44b02a3a1.png">
 
 ### Task is to:
 
